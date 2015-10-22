@@ -38,7 +38,11 @@
 /// <reference path="sampleDataViews/SimpleMatrixData.ts"/>
 /// <reference path="sampleDataViews/SimpleTableData.ts"/>
 /// <reference path="sampleDataViews/TeamScoreData.ts"/>
+<<<<<<< HEAD
 /// <reference path="sampleDataViews/VideoVisualData.ts"/>
+=======
+/// <reference path="sampleDataViews/calenderData.ts"/>
+>>>>>>> Microsoft/master
 
 /// <reference path="sampleData.ts"/>
 /// <reference path="hostControls.ts"/>

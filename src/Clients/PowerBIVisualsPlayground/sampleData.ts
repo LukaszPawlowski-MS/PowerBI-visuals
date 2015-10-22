@@ -43,7 +43,11 @@ module powerbi.visuals.sampleData {
             new sampleDataViews.SimpleMatrixData(),
             new sampleDataViews.SimpleTableData(),
             new sampleDataViews.TeamScoreData(),
+<<<<<<< HEAD
             new sampleDataViews.VideoVisualData()
+=======
+            new sampleDataViews.ProductSalesByDate()
+>>>>>>> Microsoft/master
         ];
 
         /**
