@@ -1,5 +1,5 @@
 ﻿/*
-*  Video Sample visual sample data
+*  IFrame Sample visual sample data
 *
 *  Copyright (c) Lukasz Pawlowski @lukasztweets
 *  All rights reserved. 
@@ -29,17 +29,19 @@
 module powerbi.visuals.sampleDataViews {
     import DataViewTransform = powerbi.data.DataViewTransform;
     
-    export class VideoVisualData extends SampleDataViews implements ISampleDataViewsMethods {
+    export class IFrameVisualData extends SampleDataViews implements ISampleDataViewsMethods {
 
-        public name: string = "VideoVisualData";
+        public name: string = "IFrameVisualData";
         public displayName: string = "Power BI Videos from YouTube data";
 
-        public visuals: string[] = ['VideoChart'];
+        public visuals: string[] = ['IFrameChart'];
+
+        private values: Array<string> = ["https://www.youtube.com/embed/kULc2VbwjCc"];
 
         public getDataViews(): DataView[] {
             var fieldExpr = powerbi.data.SQExprBuilder.fieldDef({ schema: 's', entity: "table1", column: "video" });
 
-            var categoryValues = ["https://www.youtube.com/embed/kULc2VbwjCc", "https://www.youtube.com/embed/Uc6YbSG4vVA", "https://www.youtube.com/embed/pbr9IZTs1rU", "https://www.youtube.com/embed/iFa8JEdWvnI"];
+            var categoryValues = this.values; 
             var categoryIdentities = categoryValues.map(function (value) {
                 var expr = powerbi.data.SQExprBuilder.equal(fieldExpr, powerbi.data.SQExprBuilder.text(value));
                 return powerbi.data.createDataViewScopeIdentity(expr);
@@ -48,8 +50,8 @@ module powerbi.visuals.sampleDataViews {
             var dataViewMetadata: powerbi.DataViewMetadata = {
                 columns: [
                     {
-                        displayName: 'Video URL',
-                        queryName: 'VideoURL',
+                        displayName: 'IFrame URL',
+                        queryName: 'IFrameURL',
                         type: powerbi.ValueType.fromDescriptor({ text: true })
                     }
                 ]
@@ -97,8 +99,19 @@ module powerbi.visuals.sampleDataViews {
                 },
             }];
         }
-
+        private ordinal: number = 0;
         public randomize(): void {
+            var values1 = ["https://www.youtube.com/embed/kULc2VbwjCc", "https://www.youtube.com/embed/Uc6YbSG4vVA", "https://www.youtube.com/embed/pbr9IZTs1rU", "https://www.youtube.com/embed/iFa8JEdWvnI"];
+            var values2 = ["ms-pbi://https://www.youtube.com/embed/kULc2VbwjCc"];
+            var values3 = ["http://www.microsoft.com/@http://www.bing.com?Foo=bar"];
+
+            if (this.ordinal === 0)
+            { this.values = values2; this.ordinal = 1;}
+            else if (this.ordinal === 1)
+            { this.values = values3; this.ordinal = 2;}
+            else
+            { this.values = values1; this.ordinal = 0;}
+
         }
         
     }
